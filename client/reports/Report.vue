@@ -24,14 +24,14 @@ export default {
   },
   methods: {
     btnSearch() {
-      // Meteor.call("findInvoice", (error, result) => {
-      //   if (result) {
-      //     console.log(result);
-      //   }
-      // });
+      Meteor.call("findInvoice", (error, result) => {
+        if (result) {
+          console.log(result);
+        }
+      });
 
-var obj = JSON.stringify(this.form);
-console.log(obj)
+// var obj = JSON.stringify(this.form);
+// console.log(obj)
 
 
     }
