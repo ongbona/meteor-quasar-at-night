@@ -1,6 +1,8 @@
 <template>
   <div>
     <center>Add Item</center>
+    <h5>{{count1}}</h5>
+    <button @click="increment">increment</button>
     <div>
       <q-input outlined v-model="form.name" label="Name"/>
       <q-input outlined v-model="form.price" label="Price"/>
@@ -15,6 +17,11 @@
 </template>
 <script>
 export default {
+  computed:{
+    count1(){
+      return this.$store.state.count;
+    }
+  },
   data() {
     return {
       labelSubmit: "Add",
@@ -32,6 +39,9 @@ export default {
   },
   watch: {},
   methods: {
+    increment(){
+      this.$store.dispatch('incrementAction',7)
+    },
     // btnBack(){
     //   this.$router.back()
     // },

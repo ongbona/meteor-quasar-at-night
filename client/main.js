@@ -21,12 +21,14 @@ const router = new VueRouter({
   mode: 'history',
 })
 
-
-
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+import store from './stores'
 Meteor.startup(() => {
   new Vue({
     el: 'app',
     router,
+    store,
     ...App,
   });
 });

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h5>{{count1}}</h5>
     <q-table
       title="List Item"
       :data="data"
@@ -15,6 +16,11 @@
 
 <script>
 export default {
+  computed: {
+    count1() {
+      return this.$store.state.count;
+    }
+  },
   data() {
     return {
       data: [],
@@ -51,7 +57,7 @@ export default {
       ]
     };
   },
-  
+
   mounted() {
     this.getData();
   },

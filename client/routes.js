@@ -9,6 +9,7 @@ import Report from './reports/Report.vue'
 import UserForm from './page/UserForm.vue'
 
 import Login from './page/Login.vue'
+import Veevalidation from './page/TestVeevalidate.vue'
 
 
 //User
@@ -20,6 +21,10 @@ const routes = [
   {
     path:'/login',
     component:Login,
+  },
+  {
+    path:'/validate',
+    component:Veevalidation,
   },
   {
     path:'/client',
