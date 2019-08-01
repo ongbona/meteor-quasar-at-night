@@ -4,21 +4,50 @@
     <h5>{{count1}}</h5>
     <button @click="increment">increment</button>
     <div>
-      <q-input outlined v-model="form.name" label="Name"/>
-      <q-input outlined v-model="form.price" label="Price"/>
-      <q-input outlined v-model="form.cost" label="Cost"/>
-      <q-input outlined v-model="form.memo" label="Memo"/>
-      <q-btn color="primary" :label="labelSubmit" @click="btnAdd"/>
-      <q-btn v-show="labelDelete!=null" color="red" :label="labelDelete" @click="btnDelete"/>
-      <q-btn icon="forward" color="black" @click="$router.back()" />
+      <q-input
+        outlined
+        v-model="form.name"
+        label="Name"
+      />
+      <q-input
+        outlined
+        v-model="form.price"
+        label="Price"
+      />
+      <q-input
+        outlined
+        v-model="form.cost"
+        label="Cost"
+      />
+      <q-input
+        outlined
+        v-model="form.memo"
+        label="Memo"
+      />
+      <q-btn
+        color="primary"
+        :label="labelSubmit"
+        @click="btnAdd"
+      />
+      <q-btn
+        v-show="labelDelete!=null"
+        color="red"
+        :label="labelDelete"
+        @click="btnDelete"
+      />
+      <q-btn
+        icon="forward"
+        color="black"
+        @click="$router.back()"
+      />
       {{$route.params._id}}
     </div>
   </div>
 </template>
 <script>
 export default {
-  computed:{
-    count1(){
+  computed: {
+    count1() {
       return this.$store.state.count;
     }
   },
@@ -39,8 +68,8 @@ export default {
   },
   watch: {},
   methods: {
-    increment(){
-      this.$store.dispatch('incrementAction',7)
+    increment() {
+      this.$store.dispatch("incrementAction", 7);
     },
     // btnBack(){
     //   this.$router.back()
@@ -54,19 +83,14 @@ export default {
             this.form = result;
           }
         });
-      }
-       else {
+      } else {
         this.labelSubmit = "Add";
         this.labelDelete = null;
       }
     },
     btnAdd() {
       if (this.labelSubmit == "Add") {
-        Meteor.call("insertItem", this.form, (err, result) => {
-          if (!err) {
-            alert("Added !");
-          }
-        });
+        this.$store.dispatch("insertItem", this.form);
       } else {
         Meteor.call("updateItem", this.form, (err, result) => {
           if (!err) {
@@ -78,10 +102,9 @@ export default {
     btnDelete() {
       Meteor.call("removeItem", this.$route.params._id, (err, result) => {
         if (result) {
-          this.$route.params._id=null
-          this.formType()
-          this.$router.push('/add-item')
-          
+          this.$route.params._id = null;
+          this.formType();
+          this.$router.push("/add-item");
         }
       });
     }
